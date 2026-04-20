@@ -19,7 +19,8 @@ class HealthService:
 
     def predict(self, heart_rate: int, oxygen_level: int) -> str:
         if self.model is None:
-            raise RuntimeError("Model is not loaded.")
+            print("Model was not loaded yet. Lazy loading now...")
+            self.load_model()
         
         # Reshape data for predicting single sample: [[HR, SpO2]]
         prediction = self.model.predict([[heart_rate, oxygen_level]])
