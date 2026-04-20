@@ -35,12 +35,12 @@ app.include_router(api_router)
 async def startup_event():
     print("Agentic AI Server starting up...")
     
-    # 1. Load ML models instantly when server boots (avoids delay on first request)
-    try:
-        health_service.load_model()
-        vision_service.load_model()
-    except Exception as e:
-        print(f"CRITICAL ERROR loading models on startup: {e}")
+    # Render (Free Tier) RAM issue fix: Remove pre-loading
+    # try:
+    #     health_service.load_model()
+    #     vision_service.load_model()
+    # except Exception as e:
+    #     print(f"CRITICAL ERROR loading models on startup: {e}")
 
 @app.on_event("shutdown")
 async def shutdown_event():
