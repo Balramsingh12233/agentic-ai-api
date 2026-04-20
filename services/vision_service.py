@@ -18,7 +18,8 @@ class VisionService:
 
     def detect_objects(self, image_bytes: bytes) -> dict:
         if self.model is None:
-            raise RuntimeError("Vision Model is not loaded.")
+            print("Vision model was not loaded yet. Lazy loading now...")
+            self.load_model()
             
         # Convert raw bytes into a cv2 image format
         nparr = np.frombuffer(image_bytes, np.uint8)
